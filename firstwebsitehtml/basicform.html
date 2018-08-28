@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://www.google.com" method="get">
+        <h1>Login</h1>
+        <h1>Please input your email and password:</h1>
+
+        <label for="emailtag">EMAIL:</label>
+        <input id="emailtag" type="email" name="useremail" placeholder="Your Email Here">
+        
+        <label for="passtag">PASSWORD:</label>
+        <input id="passtag" type="password" name="password" placeholder="password">
+
+        <br><br>
+        <h3>Do you own a Dog?</h3>
+        <label for="yes">Yes:</label>
+        <input id = "yes" type="radio" name="dog_choice" value="yes">
+
+        <label for="no">No:</label>
+        <input id = "no" type="radio" name="dog_choice" value="no">
+
+        <br><br>
+        <h3>How clean is your house?</h3>
+        <select name="stars">
+            <option value="Great">3</option>
+            <option value="Good">2</option>
+            <option value="Poor">1</option>
+        </select>
+
+
+        <h3>Any other comments?</h3>
+        <textarea name="comment" id="" cols="30" rows="8"></textarea>
+
+
+
+
+        <br><br>
+        <input type="submit" name="" value = "Submit">
+
+    </form>
+</body>
+</html>
