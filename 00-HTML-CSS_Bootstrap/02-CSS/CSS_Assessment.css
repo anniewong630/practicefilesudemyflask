@@ -27,9 +27,9 @@ h2{
 /*Task # 4
 Make all input tag boxes have a 5px solid darkblue border */
 /* https://www.w3schools.com/css/css_border.asp */
-.loginForm{
-    color:darkblue;
-    block-size: 5px;
+input{
+    border-color:darkblue;
+    border-width: 5px;
     border-style: solid;
 }
 
@@ -39,12 +39,24 @@ There is a textarea element with the id=textblock, give it the following propert
 * A 5px solid gray border
 * A width of 800px and a height of 400px
  */
+ #textblock{
+     border-color: gray;
+     border-width: 5px;
+     border-style: solid;
+     width: 800px;
+     height: 400px;
+ }
 
 
 /*Task # 7
 There is a link to Google on the page. Make this link red.*/
-
+a{
+    color: red;
+}
 
 /*Task # 9
 Finally, set all the font to be Aldrich font (or any other Google Font) */
 /* https://fonts.google.com/?selection.family=Aldrich */
+body {
+    font-family: 'Aldrich', sans-serif;
+}

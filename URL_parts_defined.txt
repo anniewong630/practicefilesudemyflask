@@ -1,0 +1,19 @@
+http://username:password@subdomain.domain.tld:80/specificroute/?queryparam1=queryvalue1#ref1
+
+Protocol: http, https, tcp, udp, ...
+User Info: username:password
+subdomain: specific identifier in the host's server config (it can point to a unique server etc)
+        subdomain1.site.com != subdomain2.site.com
+
+domain: single "company" / entity identifier on the internet
+top-level-domain: .com, .net, .biz, ... (DNSs control these and point them to all websites in the public-facing internet)
+Port: specific channel for communication with the given web address (the 80 in this case, range from 1 - 25565)
+Path/route: the part after the server address and port that specifies the type of info you are sending or requesting
+Query: the section denoted by the '?' in the URL. This is where you pass publicly-visible data to the server
+        (think of these as variable names and their corresponding values)
+Reference: the section denoted by the '#' in the URL. This specifies a particular section within the returned document.
+        This is most used with web pages that have lots of sections (check out almost any github repo's README)
+
+ex. to talk to a mongodb database:
+        mongodb://database.url.com
+        
