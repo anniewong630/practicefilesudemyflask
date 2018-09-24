@@ -1,0 +1,30 @@
+{% extends 'basep.html' %}
+
+{% block content %}
+<div class="jumbotron">
+
+    <!-- report variable is all True  -->
+    {% if report %}
+        <p>Your username passed all three requirements!</p>
+    {% else %}
+    <!-- Conditions not met -->
+    <ul>
+        {% if not lower %}
+            <li>You did not use a lower case letter.</li>
+        {% endif %}
+
+        {% if not upper %}
+            <li>You did not use an upper case letter. </li>
+        {% endif %}
+
+        {% if not last %}
+            <li>The last letter is not a number.</li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
+
+</div>
+{% endblock %}
+
+
