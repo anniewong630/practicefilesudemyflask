@@ -6,4 +6,5 @@ Return Statement Explained.py
 *.ipynb_checkpoints/
 .vscode/
 05-Databases/migrations/
-05-Databases/__pycache__/
+*/__pycache__/
+06-Larger-Flask-Applications/migrations/
