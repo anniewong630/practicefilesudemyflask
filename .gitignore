@@ -9,3 +9,6 @@ Return Statement Explained.py
 05-Databases/__pycache__/
 06-Larger-Flask-Applications/migrations/
 06-Larger-Flask-Applications/__pycache__/
+**/__pycache__/
+**/migrations/
+**/*.sqlite
