@@ -5,6 +5,7 @@ from flask_login import UserMixin
 #allow us to have functionality- is_authenticate, is_activate, etc.
 from datetime import datetime
 
+#once user has logged in, can show specific pages to the user
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -24,7 +25,7 @@ class User(db.Model, UserMixin):
     #password
     password_hash = db.Column(db.String(128))
 
-    #connect blogpost to user
+    #connect blogpost to user, backref- string attribute call relationship between blogpost and user (author)
     posts = db.relationship('BlogPost',backref='author',lazy=True)
 
     #make instance of user
@@ -32,6 +33,7 @@ class User(db.Model, UserMixin):
         self.email = email
         self.username = username
         self.password_hash = generate_password_hash(password)
+
 
     def check_password(self,password):
         return check_password_hash(self.password_hash, password)
