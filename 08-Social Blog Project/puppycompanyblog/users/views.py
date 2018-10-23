@@ -32,7 +32,7 @@ def register():
     return render_template('register.html',form=form)
 
 
-#login user
+#LOGIN USER VIEW
 @users.route('/login',methods=['GET','POST'])
 def login():
     
@@ -57,8 +57,6 @@ def login():
     return render_template('login.html',form=form)
 
 
-
-
 #LOGOUT USER VIEW
 @users.route('/logout')
 def logout():
@@ -67,7 +65,7 @@ def logout():
     return redirect(url_for('core.index'))
 
 
-#show someone's account (update user form)
+#ACCOUNT VIEW - update user information
 @users.route('/account',methods=['GET','POST'])
 @login_required
 def account():
@@ -84,7 +82,7 @@ def account():
             #(grab data from picture and username) pass it to the add_profile_pic function
             pic = add_profile_pic(form.picture.data,username)
 
-            #get current user
+            #default is changed to user's picture 
             current_user.profile_image = pic
         
         current_user.username = form.username.data
@@ -94,9 +92,8 @@ def account():
         flash('User Account Updated')
         return redirect(url_for('users.account'))
 
-
     elif request.method == 'GET':
-        #not submitting anything, just getting current username
+        #not submitting anything, just getting current username ******
         form.username.data = current_user.username
         form.email.data = current_user.email
     #goes to static folder under profile_pics get the current user's profile image
@@ -106,15 +103,14 @@ def account():
 
 
 
-#show all users blogpost (user list of blogpost)
+#USER'S LIST OF BLOGPOST VIEW
 @users.route('/<username>')
 def user_posts(username):
+    #later on will use this page variable to cycle through user post 
     page = request.args.get('page',1,type=int)
     #will return 404 error if username does not exist
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
 
-    return render_template('user_blogpost.html',blog_posts=blog_posts,user=user)
-
-
+    return render_template('user_blog_post.html',blog_posts=blog_posts,user=user)
 
