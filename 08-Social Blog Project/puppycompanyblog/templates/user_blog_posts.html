@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='container'>
-    <div class='jumbotron'>
+<div class="container">
+    <div class="jumbotron">
         <div align='center'>
             <h1>Welcome to the page for {{user.username}}</h1>
             <!-- get image -->
@@ -12,9 +12,9 @@
 
 
 <!-- For loop logic to go through blogposts, want to get items off the query (blog_post.items) loop through individual blogposts -->
-{% for post in blog_post.items %}
+{% for post in blog_posts.items %}
     <h2><a href="{{url_for('blog_posts.blog_post',blog_post_id=post.id)}}">{{post.title}}</a></h2>
-    Written By: <a href="{{url_for('users.user_post',username=post.author.username)}}">{{post.author.username}}</a>
+    Written By: <a href="{{url_for('users.user_posts',username=post.author.username)}}">{{post.author.username}}</a>
     <p class='text-muted'>Published on:{{post.date.strftime("%Y-%m-%d")}}</p>
     <br>
     <p>{{post.text}}</p>
@@ -40,10 +40,6 @@
             {% endif %}
             
         {% endfor %}
-        
-
-
-    </ul>
   </nav>
 
 

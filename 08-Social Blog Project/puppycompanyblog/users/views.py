@@ -112,5 +112,5 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = BlogPost.query.filter_by(author=user).order_by(BlogPost.date.desc()).paginate(page=page,per_page=5)
 
-    return render_template('user_blog_post.html',blog_posts=blog_posts,user=user)
+    return render_template('user_blog_posts.html',blog_posts=blog_posts,user=user)
 

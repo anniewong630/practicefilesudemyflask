@@ -4,7 +4,7 @@ from flask import render_template, url_for, flash, request, redirect, Blueprint
 from flask_login import current_user, login_required
 from puppycompanyblog import db
 from puppycompanyblog.models import BlogPost
-from puppycompanyblog.blog_posts.forms import BlogpostForm
+from puppycompanyblog.blog_posts.forms import BlogPostForm
 
 
 blog_posts = Blueprint('blog_posts',__name__)
@@ -44,7 +44,7 @@ def blog_post(blog_post_id):
 
 #UPDATE BLOGPOST
 #makes sure current author is the current user
-@blog_posts.route('/<int:blog_post_id/update>',methods=['GET','POST'])
+@blog_posts.route('/<int:blog_post_id>/update',methods=['GET','POST'])
 @login_required
 def update(blog_post_id):
 
@@ -54,7 +54,7 @@ def update(blog_post_id):
         abort(403)
 
 
-    form = BlogpostForm()
+    form = BlogPostForm()
 
     if form.validate_on_submit():
         blog_post.title = form.title.data,
@@ -65,15 +65,16 @@ def update(blog_post_id):
 
         return redirect(url_for('blog_posts.blog_post',blog_post_id=blog_post.id))
 
-    elif request.method = 'GET':
+    #Pass in the old blog post information so user can edit the old information
+    elif request.method == 'GET':
         form.title.data = blog_post.title
         form.text.data = blog_post.text 
 
-    return render_template('create_post.html',title='Updating',form=form)
+    return render_template('create_post.html',title='Update',form=form)
 
 
 #DELETE BLOGPOST
-@blog_posts.route('/<int:blog_post_id/delete>',methods=['GET','POST'])
+@blog_posts.route('/<int:blog_post_id>/delete',methods=['GET','POST'])
 @login_required
 def delete_post(blog_post_id):
 
