@@ -57,7 +57,7 @@ def update(blog_post_id):
     form = BlogPostForm()
 
     if form.validate_on_submit():
-        blog_post.title = form.title.data,
+        blog_post.title = form.title.data
         blog_post.text = form.text.data
                             
         db.session.commit()
