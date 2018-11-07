@@ -1,8 +1,13 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
+from secure_check import authenticate,identity
+from flask_jwt import JWT,jwt_required
 
 app = Flask(__name__)
+app.config['SECRETKEY'] = 'mysecretkey'
 api = Api(app)
+
+jwt = JWT(app,authenticate,identity)
 
 # puppies = [{'name':'Rufus'},{name:'Frankie'},......]
 # its in memory, it clears with every restart
@@ -37,7 +42,7 @@ class PuppyNames(Resource):
 
 
 class AllNames(Resource):
-
+    @jwt_required()
     def get(self):
         # return all the puppies :)
         return {'puppies': puppies}

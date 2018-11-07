@@ -1,8 +1,23 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
+from secure_check import authenticate,identity
+from flask_jwt import JWT,jwt_required
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mysecretkey'
+#app.config['JWT_SECRET_KEY'] = 'mysecretkey'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'auth_app.sqlite')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
+db = SQLAlchemy(app)
+Migrate(app,db)
+
+
 api = Api(app)
+jwt = JWT(app,authenticate,identity)
 
 # puppies = [{'name':'Rufus'},{name:'Frankie'},......]
 # its in memory, it clears with every restart
@@ -37,7 +52,7 @@ class PuppyNames(Resource):
 
 
 class AllNames(Resource):
-
+    @jwt_required()
     def get(self):
         # return all the puppies :)
         return {'puppies': puppies}
